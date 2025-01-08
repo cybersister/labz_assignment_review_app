@@ -1,13 +1,13 @@
 # Bloom Code Camp LMS
 
 ## Welcome to the Backend Repository for Bloom Code Camp LMS, an assignment review app!
-To set this project up you will need to clone it to your local computer and make sure to have the prereqiosites of...
+To set this project up you will need to clone it to your local computer and make sure to have the following prerequisites ...
 - docker / dockerdesktop
 - docker compose
 - intellij Idea
 - Java JRE and JDK 17+
 
-  **If there are any of these prerequisites that you are unfarmiliar with, please attend a workshop about the subject, and attend office hours. if the times are outside of your normal hours please request a 1:1 to get unblocked.**
+**If there are any of these prerequisites that you are unfarmiliar with, please attend a workshop about the subject, and attend office hours. if the times are outside of your normal hours please request a 1:1 to get unblocked.**
 
 ### Make sure you are in the root directory...
 1. You will need to delete a text file inside the data/pg folder.
