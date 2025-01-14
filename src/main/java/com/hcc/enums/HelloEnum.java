@@ -1,7 +1,8 @@
 package com.hcc.enums;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-// this is an example enum feel free to delete this once you have created your own.
+// this is an example enum feel free to delete this once you have created your own
+
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum HelloEnum {
     Greeting1(1, "Good Morning"),
@@ -17,6 +18,12 @@ public enum HelloEnum {
         this.greetingMessage = greetingMessage;
     }
 
-    int getGreetingNumber() { return greetingNumber; }
-    String getGreetingMessage() { return greetingMessage; }
+    int getGreetingNumber() {
+        return greetingNumber;
+    }
+
+    String getGreetingMessage() {
+        return greetingMessage;
+    }
+
 }

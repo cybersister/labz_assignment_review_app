@@ -56,14 +56,16 @@ Your job is to begin work on the LMS by setting up the domain objects shown abov
 - branch: String
 - reviewVideoUrl: String
 - user: User
- create a no args constructor and an all args except id constructor.
+
+create a no args constructor and an all args except id constructor.
 
 #### User - Stage 1
 - id : Long
 - cohortStartDate: LocalDate
 - username: String
 - password: String
-  create a no args constructor and an all args except id constructor.
+
+create a no args constructor and an all args except id constructor.
 
 ### Add Spring Security and create a Security Config
 
