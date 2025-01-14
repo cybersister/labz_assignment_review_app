@@ -59,6 +59,10 @@ public class AssignmentResponseDTO {
         return username;
     }
 
+    public String getCodeReviewerUsername() {
+        return codeReviewerUsername;
+    }
+
     public AssignmentEnum[] getAssignmentEnums() {
         return assignmentEnums;
     }

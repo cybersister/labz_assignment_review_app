@@ -40,6 +40,7 @@ public class User implements UserDetails {
         this.password = user.password;
         this.authorities = user.authorities != null ? new ArrayList<>(user.authorities) : null;
     }
+    // COPY CONSTRUCTOR
 
     @Override
     public boolean isAccountNonExpired() {
