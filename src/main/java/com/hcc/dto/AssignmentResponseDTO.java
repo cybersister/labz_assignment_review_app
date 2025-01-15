@@ -27,6 +27,9 @@ public class AssignmentResponseDTO {
         this.username = assignment.getUser().getUsername();
         this.codeReviewerUsername = assignment.getCodeReviewer()
                 != null ? assignment.getCodeReviewer().getUsername() : null;
+        // ternary operator ... if the <assignment.getCodeReviewer()> is not null, then
+        //  assign it the value <assignment.getCodeReviewer().getUsername()> ... otherwise,
+        //  if the <assignment.getCodeReviewer()> is null, assign it a value of <null>
         this.assignmentEnums = AssignmentEnum.values();
         this.statusEnums = AssignmentStatusEnum.values();
     }

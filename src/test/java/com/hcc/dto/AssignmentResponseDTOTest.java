@@ -29,7 +29,8 @@ public class AssignmentResponseDTOTest {
 
         user = new User(localDate, "maddiodie", "password", authorityList);
 
-        codeReviewer = new User(localDate, "prince_prof", "password", authorityList);
+        codeReviewer = new User(localDate, "prince_prof", "password",
+                authorityList);
     }
 
     @Test
@@ -37,18 +38,21 @@ public class AssignmentResponseDTOTest {
         // given
         assignment = new Assignment("Pending Submission", 1,
                 "https://github.com/madeup/assignment/slay/", "main",
-                "https://youtube.com/review/slay/assignment", user, codeReviewer);
+                "https://youtube.com/review/slay/assignment", user,
+                codeReviewer);
 
         // when
         AssignmentResponseDTO assignmentResponseDTO = new AssignmentResponseDTO(assignment);
 
         // then
-        assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser().getUsername());
+        assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser()
+                .getUsername());
         assertEquals(assignmentResponseDTO.getBranch(), assignment.getBranch());
         assertEquals(assignmentResponseDTO.getNumber(), assignment.getNumber());
         assertEquals(assignmentResponseDTO.getGithubUrl(), assignment.getGithubUrl());
         assertEquals(assignmentResponseDTO.getStatus(), assignment.getStatus());
-        assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment.getReviewVideoUrl());
+        assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment
+                .getReviewVideoUrl());
     }
 
     @Test
@@ -56,21 +60,22 @@ public class AssignmentResponseDTOTest {
         // given
         assignment = new Assignment("Pending Submission", 1,
                 "https://github.com/madeup/assignment/slay/", "main",
-                "https://youtube.com/review/slay/assignment", user, null);
+                "https://youtube.com/review/slay/assignment", user,
+                null);
 
         // when
         AssignmentResponseDTO assignmentResponseDTO = new AssignmentResponseDTO(assignment);
 
         // then
-        assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser().getUsername());
+        assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser()
+                .getUsername());
         assertEquals(assignmentResponseDTO.getBranch(), assignment.getBranch());
         assertEquals(assignmentResponseDTO.getNumber(), assignment.getNumber());
         assertEquals(assignmentResponseDTO.getGithubUrl(), assignment.getGithubUrl());
         assertEquals(assignmentResponseDTO.getStatus(), assignment.getStatus());
-        assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment.getReviewVideoUrl());
+        assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment
+                .getReviewVideoUrl());
         assertNull(assignmentResponseDTO.getCodeReviewerUsername());
     }
-
-
 
 }

@@ -5,6 +5,9 @@ public class AuthCredentialsRequest {
     private String username;
     private String password;
 
+    public AuthCredentialsRequest() {}
+    // NO-ARGS CONSTRUCTOR
+
     public String getUsername() {
         return username;
     }
@@ -19,6 +22,11 @@ public class AuthCredentialsRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthCredentialsRequest {" + "username = " + username + "}";
     }
 
 }

@@ -84,4 +84,8 @@ public class User implements UserDetails {
         return password;
     }
 
+    public LocalDate getCohortStartDate() {
+        return cohortStartDate;
+    }
+
 }
