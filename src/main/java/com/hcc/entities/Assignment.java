@@ -3,15 +3,22 @@ package com.hcc.entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "assignments")
 public class Assignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Transient
     private String status;
+    @Column(name = "number")
     private Integer number;
+    @Column(name = "github_url")
     private String githubUrl;
+    @Column(name = "branch")
     private String branch;
+    @Column(name = "code_review_video_url")
     private String reviewVideoUrl;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

@@ -2,6 +2,10 @@ package com.hcc.entities;
 
 import javax.persistence.*;
 
+/*
+so i'm working on an assignment, a lot of it is up to me ... i'm working on some of the bare bones pieces such as the entities, exceptions, utilities, repositories, etc. ... yesterday i learned a lot about
+ */
+
 // this is an example entity feel free to delete this once you have created your own.
 @Entity
 @Table(name = "greetings")

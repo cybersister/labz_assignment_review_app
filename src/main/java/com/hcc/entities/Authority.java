@@ -5,11 +5,14 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "authorities")
 public class Authority implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "authority")
     private String authority;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

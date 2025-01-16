@@ -4,6 +4,12 @@ import com.hcc.entities.Assignment;
 import com.hcc.enums.AssignmentEnum;
 import com.hcc.enums.AssignmentStatusEnum;
 
+/**
+ * A data transfer object for the Assignment entity. The main purpose is to transfer data
+ * between layers of the application, including controllers and views. This class specifically
+ * provides a simplified version of the Assignment object that has been tailored for client
+ * consumption. This keeps the business logic separate from the data presentation logic.
+ */
 public class AssignmentResponseDTO {
 
     private final Long id;

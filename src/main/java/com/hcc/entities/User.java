@@ -10,13 +10,18 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "cohort_start_date")
     private LocalDate cohortStartDate;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
     @OneToMany(mappedBy = "user")
     private List<Authority> authorities;

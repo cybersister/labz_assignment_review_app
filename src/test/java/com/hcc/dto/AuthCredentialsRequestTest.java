@@ -9,13 +9,11 @@ public class AuthCredentialsRequestTest {
     @Test
     public void AuthCredentialsRequest_testSettersAndGetters() {
         // given
-        AuthCredentialsRequest request = new AuthCredentialsRequest();
         String username = "maddiodie";
         String password = "slayTheBoots";
 
         // when
-        request.setUsername(username);
-        request.setPassword(password);
+        AuthCredentialsRequest request = new AuthCredentialsRequest(username, password);
 
         // then
         assertEquals(username, request.getUsername());
