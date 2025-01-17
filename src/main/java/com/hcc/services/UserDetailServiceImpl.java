@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * Responsible for loading the user details from the database.
+ *
+ * This class is used when Spring Security needs to authenticate a user. The returned
+ * <UserDetails> object includes the encoded password that Spring uses to validate the
+ * user's credentials.
  */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {

@@ -10,7 +10,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * Responsible for configuring authentication.
+ * Responsible for configuring authentication. It defines how user are authenticated,
+ * specifies the password encoding mechanism, and sets up the security rules for this
+ * application.
+ *
+ * This class does not directly verify passwords but ensures that the necessary services
+ * and encoders are properly wired into the authentication manager.
  */
 @Configuration
 @EnableWebSecurity
@@ -55,5 +60,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
     */
+
+    // proper wiring of HttpSecurity is what is missing from this implementation ...
+    // currently, Spring's default security behavior applies, in other words, all
+    //  endpoints require authentication
+    // this will need to be uncommented and customized to match the application's needs
+
+    // todo
+    // - uncomment and customize HttpSecurity
+    // - ensure that there is password hashing in the registration portion
+    //   - when saving a new user to the database, hash their password before saving
+    //     using the <BCryptPasswordEncoder>
+    // - ensure all stored passwords are hashed using <BCryptPasswordEncoder>
 
 }
