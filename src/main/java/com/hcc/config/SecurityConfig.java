@@ -41,30 +41,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-    }
-
-    /*
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
         http
+            .csrf().disable()
+            // disabled csrf because we're using tokens here
             .authorizeRequests()
-                .antMatchers("/public/**").permitAll() // Allow public access to certain endpoints
-                .anyRequest().authenticated() // Require authentication for all other requests
-                .and()
-            .formLogin()
-                .loginPage("/login") // Custom login page
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
+                .antMatchers("/api/auth/login").permitAll()
+                // allows anyone who is authenticated or not to access this endpoint
+                .antMatchers("/api/auth/validate").authenticated()
+                // requires validated authentication to access (via a token) ...
+                .antMatchers("/api/assignments", "/api/assignments/**")
+                    .authenticated()
+                .anyRequest().authenticated();
+                // protects all other endpoints ... must be authenticated
     }
-    */
-
-    // proper wiring of HttpSecurity is what is missing from this implementation ...
-    // currently, Spring's default security behavior applies, in other words, all
-    //  endpoints require authentication
-    // this will need to be uncommented and customized to match the application's needs
 
     // todo
     // - uncomment and customize HttpSecurity
