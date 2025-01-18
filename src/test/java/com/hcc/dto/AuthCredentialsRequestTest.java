@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AuthCredentialsRequestTest {
 
     @Test
-    public void AuthCredentialsRequest_testSettersAndGetters() {
+    public void AuthCredentialsRequest_testGetters() {
         // given
         String username = "maddiodie";
         String password = "slayTheBoots";

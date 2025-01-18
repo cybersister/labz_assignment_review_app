@@ -21,24 +21,38 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * Used to load user-specific data during authentication.
-     */
     @Autowired
     UserDetailServiceImpl userDetailServiceImpl;
 
-    /**
-     * A custom password encoder that is used to encode and verify passwords.
-     */
     @Autowired
     CustomPasswordEncoder customPasswordEncoder;
 
+    /**
+     * Configures the {@link AuthenticationManagerBuilder} to use the custom user details
+     * service and password encoder for authentication. It sets up the authentication
+     * manager to fetch user-specific data using the {@link UserDetailServiceImpl} and to
+     * validate passwords using the custom password encoder provided in the
+     * {@link CustomPasswordEncoder}
+     *
+     * @param auth the {@link AuthenticationManagerBuilder} used to configure the
+     *             authentication manager
+     * @throws Exception thrown if an error occurs while setting up the authentication
+     *                   manager
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailServiceImpl)
                 .passwordEncoder(customPasswordEncoder.getPasswordEncoder());
     }
 
+    /**
+     * Configures the HTTP security settings for the API endpoints of this application.
+     * This method defines the security rules for handling requests to various API
+     * endpoints and specifies access control rules for different endpoints based on their
+     * authentication requirements.
+     * @param http the {@link HttpSecurity} object to configure the security settings
+     * @throws Exception thrown if an error occurs while configuring the security settings
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

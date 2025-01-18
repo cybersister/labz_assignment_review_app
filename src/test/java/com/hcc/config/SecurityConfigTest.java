@@ -44,4 +44,16 @@ public class SecurityConfigTest {
         verify(daoAuthConfig).passwordEncoder(customPasswordEncoder.getPasswordEncoder());
     }
 
+    @Test
+    public void testHttpsSecurityConfigurations() throws Exception {
+        // given
+
+
+        // when
+
+
+        // then
+
+    }
+
 }

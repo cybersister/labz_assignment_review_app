@@ -9,13 +9,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-// uncomment this class once you have created all the needed parts
-
 /**
  * Responsible for loading the user details from the database.
  *
  * This class is used when Spring Security needs to authenticate a user. The returned
- * <UserDetails> object includes the encoded password that Spring uses to validate the
+ * {@link UserDetails} object includes the encoded password that Spring uses to validate the
  * user's credentials.
  */
 @Service
