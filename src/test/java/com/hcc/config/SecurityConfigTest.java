@@ -6,21 +6,26 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.Mockito.*;
 
 public class SecurityConfigTest {
 
     @Mock
-    UserDetailServiceImpl userDetailServiceImpl;
+    private UserDetailServiceImpl userDetailServiceImpl;
 
     @Mock
-    CustomPasswordEncoder customPasswordEncoder;
+    private CustomPasswordEncoder customPasswordEncoder;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @InjectMocks
-    SecurityConfig securityConfig;
+    private SecurityConfig securityConfig;
 
     public SecurityConfigTest() {
         MockitoAnnotations.openMocks(this);
@@ -42,18 +47,6 @@ public class SecurityConfigTest {
         // then
         verify(authBuilder).userDetailsService(userDetailServiceImpl);
         verify(daoAuthConfig).passwordEncoder(customPasswordEncoder.getPasswordEncoder());
-    }
-
-    @Test
-    public void testHttpsSecurityConfigurations() throws Exception {
-        // given
-
-
-        // when
-
-
-        // then
-
     }
 
 }
