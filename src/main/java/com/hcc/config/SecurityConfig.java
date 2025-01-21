@@ -68,12 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
                 // protects all other endpoints ... must be authenticated
     }
-
-    // todo
-    // - uncomment and customize HttpSecurity
-    // - ensure that there is password hashing in the registration portion
-    //   - when saving a new user to the database, hash their password before saving
-    //     using the <BCryptPasswordEncoder>
-    // - ensure all stored passwords are hashed using <BCryptPasswordEncoder>
+    // todo -> test this method
 
 }
