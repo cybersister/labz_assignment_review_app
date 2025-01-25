@@ -1,7 +1,7 @@
 package com.hcc.controllers;
 
 import com.hcc.dto.AuthCredentialsRequest;
-import com.hcc.utils.TokenService;
+import com.hcc.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +26,12 @@ public class AuthController {
 
     @Autowired
     private TokenService tokenService;
+
+    public AuthController(AuthenticationManager authenticationManager,
+                          TokenService tokenService) {
+        this.authenticationManager = authenticationManager;
+        this.tokenService = tokenService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid

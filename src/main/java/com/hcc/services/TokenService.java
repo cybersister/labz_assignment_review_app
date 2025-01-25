@@ -1,4 +1,4 @@
-package com.hcc.utils;
+package com.hcc.services;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -33,7 +33,5 @@ public class TokenService {
                 .getBody()
                 .getSubject();
     }
-
-
 
 }

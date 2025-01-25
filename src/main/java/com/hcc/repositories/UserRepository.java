@@ -8,7 +8,7 @@ import java.util.Optional;
 
 
 /**
- * Repository interface for accessing and managing {@link User} entities. This interface
+ * Repository interface for accessing and managing the {@link User} entity. This interface
  * provides methods for performing CRUD operations and other queries on the {@link User}
  * entity.
  */

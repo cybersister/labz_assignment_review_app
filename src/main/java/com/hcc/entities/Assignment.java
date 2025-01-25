@@ -8,8 +8,8 @@ public class Assignment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "assignment_id")
+    private Long assignmentId;
     @Transient
     private String status;
     @Column(name = "number")
@@ -43,7 +43,7 @@ public class Assignment {
     // ALL-ARGS CONSTRUCTOR EXCEPT ID
 
     public Long getId() {
-        return id;
+        return assignmentId;
     }
 
     public String getStatus() {

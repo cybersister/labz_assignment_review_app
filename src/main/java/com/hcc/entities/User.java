@@ -15,8 +15,8 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "user_id")
+    private Long userId;
     @Column(name = "cohort_start_date")
     private LocalDate cohortStartDate;
     @Column(name = "username")
@@ -39,7 +39,7 @@ public class User implements UserDetails {
     // ALL-ARGS EXPECT ID CONSTRUCTOR
 
     public User(User user) {
-        this.id = user.id;
+        this.userId = user.userId;
         this.cohortStartDate = user.cohortStartDate;
         this.username = user.username;
         this.password = user.password;
