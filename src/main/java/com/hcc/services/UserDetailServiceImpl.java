@@ -1,41 +1,35 @@
 package com.hcc.services;
 
+import com.hcc.entities.User;
 import com.hcc.repositories.UserRepository;
-import com.hcc.utils.CustomPasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
+//import com.hcc.utils.CustomPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- * Responsible for loading the user details from the database.
- *
- * This class is used when Spring Security needs to authenticate a user. The returned
- * {@link UserDetails} object includes the encoded password that Spring uses to validate the
- * user's credentials.
- */
+import java.util.Optional;
+
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+//    @Autowired
+//    CustomPasswordEncoder passwordEncoder;
 
-    private CustomPasswordEncoder passwordEncoder;
-    // this was provided in the ticket, but i don't think that it is actually applied ... or
-    //  else it will be applicable in the future <3
+    private UserRepository userRepo;
 
-    public UserDetailServiceImpl(UserRepository userRepository,
-                                 CustomPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public UserDetailServiceImpl(UserRepository userRepo) {
+        this.userRepo = userRepo;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User no found with username: "
-                        + username + "."));
+        Optional<User> userOpt = userRepo.findByUsername(username);
+//        user.setUsername(username);
+//        user.setPassword(passwordEncoder.getPasswordEncoder().encode("asdfasdf"));
+        return userOpt.orElseThrow(() ->
+                new UsernameNotFoundException("Invalid Credentials"));
     }
 
 }
