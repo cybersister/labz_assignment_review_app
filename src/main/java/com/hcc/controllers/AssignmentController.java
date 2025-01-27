@@ -2,7 +2,6 @@ package com.hcc.controllers;
 
 import com.hcc.entities.Assignment;
 import com.hcc.services.AssignmentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +12,11 @@ import java.util.List;
 @RequestMapping("/api/assignments")
 public class AssignmentController {
 
-    @Autowired
     private AssignmentService assignmentService;
+
+    public AssignmentController(AssignmentService assignmentService) {
+        this.assignmentService = assignmentService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Assignment>> getAssignmentsByUserId(@RequestParam

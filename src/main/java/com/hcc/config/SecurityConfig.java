@@ -2,7 +2,6 @@ package com.hcc.config;
 
 import com.hcc.services.UserDetailServiceImpl;
 import com.hcc.utils.CustomPasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,11 +20,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    UserDetailServiceImpl userDetailServiceImpl;
+    private UserDetailServiceImpl userDetailServiceImpl;
 
-    @Autowired
-    CustomPasswordEncoder customPasswordEncoder;
+    private CustomPasswordEncoder customPasswordEncoder;
+
+    public SecurityConfig(UserDetailServiceImpl userDetailServiceImpl, CustomPasswordEncoder customPasswordEncoder) {
+        this.userDetailServiceImpl = userDetailServiceImpl;
+        this.customPasswordEncoder = customPasswordEncoder;
+    }
 
     /**
      * Configures the {@link AuthenticationManagerBuilder} to use the custom user details

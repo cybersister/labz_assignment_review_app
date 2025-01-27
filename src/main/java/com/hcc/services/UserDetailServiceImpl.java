@@ -18,13 +18,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    CustomPasswordEncoder passwordEncoder;
+    private CustomPasswordEncoder passwordEncoder;
     // this was provided in the ticket, but i don't think that it is actually applied ... or
     //  else it will be applicable in the future <3
+
+    public UserDetailServiceImpl(UserRepository userRepository,
+                                 CustomPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

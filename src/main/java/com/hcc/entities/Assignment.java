@@ -74,8 +74,16 @@ public class Assignment {
         return codeReviewer;
     }
 
+    public void setCodeReviewer(User codeReviewer) {
+        this.codeReviewer = codeReviewer;
+    }
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public void setGithubUrl(String githubUrl) {
@@ -90,8 +98,8 @@ public class Assignment {
         this.reviewVideoUrl = reviewVideoUrl;
     }
 
-    public void setCodeReviewer(User codeReviewer) {
-        this.codeReviewer = codeReviewer;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

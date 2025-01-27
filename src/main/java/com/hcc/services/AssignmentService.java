@@ -2,11 +2,10 @@ package com.hcc.services;
 
 import com.hcc.entities.Assignment;
 import com.hcc.entities.User;
+import com.hcc.exceptions.AssignmentNotFoundException;
 import com.hcc.repositories.AssignmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +13,6 @@ import java.util.Optional;
 @Service
 public class AssignmentService {
 
-    @Autowired
     private AssignmentRepository assignmentRepository;
 
     public AssignmentService(AssignmentRepository assignmentRepository) {
@@ -22,26 +20,18 @@ public class AssignmentService {
     }
 
     /**
-     * This method searches the database for a list of {@link Assignment}s from a
-     * {@link User} based on a given {@link User} ID.
+     * Searches for all {@link Assignment}s associated with a given {@code userId}.
      * @param userId the primary key of {@link User} objects that will be used to search for
      *               a list of {@link Assignment}s for a {@link User} in the database
      * @return the list of {@link Assignment}s that were searched for
      */
     public List<Assignment> getAssignmentsByUserId(Long userId) {
-        Optional<List<Assignment>> assignments = assignmentRepository.findByUserId(userId);
-
-        if (assignments.isEmpty()) {
-            return Collections.emptyList();
-        }
-
-        return assignments.get();
+        return assignmentRepository.findByUserId(userId).orElse(Collections.emptyList());
     }
 
     /**
-     * Searches the database for an {@link Assignment} based on the given
-     * {@code assignmentId}. It will throw an {@link EntityNotFoundException} if no
-     * {@link Assignment} is found using the given {@code assignmentId}.
+     * Searches for an {@link Assignment} based on the given {@code assignmentId}. It will
+     * throw an {@link AssignmentNotFoundException} if no {@link Assignment} is found.
      * @param assignmentId the primary key of {@link Assignment} object that will be used to
      *                     search for an {@link Assignment} in the database
      * @return the {@link Assignment} that was searched for
@@ -51,7 +41,7 @@ public class AssignmentService {
                 .findByAssignmentId(assignmentId);
 
         if (assignment.isEmpty()) {
-            throw new EntityNotFoundException("Assignment with ID "
+            throw new AssignmentNotFoundException("Assignment with ID "
                     + assignmentId.toString() + " not found.");
         }
 
@@ -59,9 +49,9 @@ public class AssignmentService {
     }
 
     /**
-     * Updates an {@link Assignment} in the database by searching for an existing
-     * {@link Assignment} using the given {@code assignmentId}. If an assignment with the
-     * specified ID does not exist, an {@link EntityNotFoundException} is thrown.
+     * Updates an {@link Assignment} using the given {@code assignmentId} and updated
+     * {@link Assignment}. If an assignment with the specified ID does not exist, an
+     * {@link AssignmentNotFoundException} is thrown.
      * @param assignmentId the ID of the {@link} Assignment to update
      * @param updatedAssignment the updated {@link Assignment} object containing the new
      *                          values to save
@@ -69,27 +59,36 @@ public class AssignmentService {
      */
     public Assignment updateAssignmentByAssignmentId(Long assignmentId,
                                                  Assignment updatedAssignment) {
-        Optional<Assignment> existingAssignment = assignmentRepository
-                .findByAssignmentId(assignmentId);
+        Assignment existingAssignment = assignmentRepository
+                .findByAssignmentId(assignmentId)
+                .orElseThrow(() -> new AssignmentNotFoundException("Assignment with ID "
+                        + assignmentId.toString() + " not found."));
 
-        if (existingAssignment.isEmpty()) {
-            throw new EntityNotFoundException("Assignment with ID "
-                    + assignmentId.toString() + " not found.");
-        }
+        existingAssignment.setUser(updatedAssignment.getUser());
+        existingAssignment.setNumber(updatedAssignment.getNumber());
+        existingAssignment.setBranch(updatedAssignment.getBranch());
+        existingAssignment.setStatus(updatedAssignment.getStatus());
+        existingAssignment.setGithubUrl(updatedAssignment.getGithubUrl());
+        existingAssignment.setCodeReviewer(updatedAssignment.getCodeReviewer());
+        existingAssignment.setReviewVideoUrl(updatedAssignment.getReviewVideoUrl());
 
-        assignmentRepository.save(updatedAssignment);
-
-        return updatedAssignment;
+        return assignmentRepository.save(existingAssignment);
         // the save method is built into JpaRepository
     }
 
     /**
-     * Creates a new {@link Assignment} entity in the database with the given
-     * {@link Assignment}.
+     * Creates a new {@link Assignment} entry with the given {@link Assignment}.
      * @param newAssignment the new {@link Assignment} that is being persisted
      * @return the new {@link Assignment} that is being saved
      */
     public Assignment saveNewAssignment(Assignment newAssignment) {
+        Long newAssignmentId = newAssignment.getId();
+
+        if (newAssignmentId != null && assignmentRepository.existsById(newAssignmentId)) {
+            throw new IllegalArgumentException("Assignment with ID " + newAssignmentId
+                    + " already exists.");
+        }
+
         assignmentRepository.save(newAssignment);
 
         return newAssignment;
