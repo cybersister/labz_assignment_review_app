@@ -89,9 +89,7 @@ public class AssignmentService {
                     + " already exists.");
         }
 
-        assignmentRepository.save(newAssignment);
-
-        return newAssignment;
+        return assignmentRepository.save(newAssignment);
     }
 
 }

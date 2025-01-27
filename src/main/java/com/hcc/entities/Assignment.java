@@ -78,6 +78,10 @@ public class Assignment {
         this.codeReviewer = codeReviewer;
     }
 
+    public void setAssignmentId(Long assignmentId) {
+        this.assignmentId = assignmentId;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }
