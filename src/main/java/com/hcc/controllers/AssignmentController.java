@@ -37,7 +37,7 @@ public class AssignmentController {
             @PathVariable Long assignmentId, @RequestBody Assignment updatedAssignment) {
         Assignment assignment = assignmentService.updateAssignmentByAssignmentId(
                 assignmentId, updatedAssignment);
-        return ResponseEntity.ok(updatedAssignment);
+        return ResponseEntity.ok(assignment);
     }
 
     @PostMapping
