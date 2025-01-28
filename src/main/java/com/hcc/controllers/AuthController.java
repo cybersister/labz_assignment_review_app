@@ -21,7 +21,6 @@ import java.util.Map;
 public class AuthController {
 
     private AuthenticationManager authenticationManager;
-
     private TokenService tokenService;
 
     public AuthController(AuthenticationManager authenticationManager,
@@ -88,7 +87,6 @@ public class AuthController {
 
         try {
             String username = tokenService.validateTokenAndGetUsername(token);
-
             return ResponseEntity.ok(Map.of("username", username, "valid", true));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
