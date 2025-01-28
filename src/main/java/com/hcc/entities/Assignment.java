@@ -1,7 +1,5 @@
 package com.hcc.entities;
 
-import com.hcc.enums.AssignmentEnum;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,9 +12,8 @@ public class Assignment {
     private Long assignmentId;
     @Transient
     private String status;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "assignment_enum")
-    private AssignmentEnum assignmentEnum;
+    @Column(name = "number")
+    private Integer number;
     @Column(name = "github_url")
     private String githubUrl;
     @Column(name = "branch")
