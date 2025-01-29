@@ -1,6 +1,10 @@
 package com.hcc.entities;
 
+import com.hcc.enums.AssignmentEnum;
+import com.hcc.enums.AssignmentStatusEnum;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "assignments")
@@ -10,10 +14,21 @@ public class Assignment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "assignment_id")
     private Long assignmentId;
-    @Transient
-    private String status;
-    @Column(name = "number")
-    private Integer number;
+
+    @ElementCollection(targetClass = AssignmentEnum.class)
+    @CollectionTable(name = "assignment_numbers_enums",
+            joinColumns = @JoinColumn(name = "assignment_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "assignment_numbers_enums")
+    private List<AssignmentEnum> assignmentNumbersEnums;
+
+    @ElementCollection(targetClass = AssignmentStatusEnum.class)
+    @CollectionTable(name = "assignment_status_enums",
+            joinColumns = @JoinColumn(name = "assignment_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "assignment_status_enums")
+    private List<AssignmentStatusEnum> assignmentStatusEnums;
+
     @Column(name = "github_url")
     private String githubUrl;
     @Column(name = "branch")
@@ -30,10 +45,11 @@ public class Assignment {
     public Assignment() {}
     // NO-ARGS CONSTRUCTOR
 
-    public Assignment(String status, Integer number, String githubUrl, String branch,
-                      String reviewVideoUrl, User user, User codeReviewer) {
-        this.status = status;
-        this.number = number;
+    public Assignment(List<AssignmentEnum> assignmentNumbersEnums,
+                      List<AssignmentStatusEnum> assignmentStatusEnums, String githubUrl,
+                      String branch, String reviewVideoUrl, User user, User codeReviewer) {
+        this.assignmentNumbersEnums = assignmentNumbersEnums;
+        this.assignmentStatusEnums = assignmentStatusEnums;
         this.githubUrl = githubUrl;
         this.branch = branch;
         this.reviewVideoUrl = reviewVideoUrl;
@@ -46,12 +62,12 @@ public class Assignment {
         return assignmentId;
     }
 
-    public String getStatus() {
-        return status;
+    public List<AssignmentEnum> getAssignmentNumbersEnums() {
+        return assignmentNumbersEnums;
     }
 
-    public Integer getNumber() {
-        return number;
+    public List<AssignmentStatusEnum> getAssignmentStatusEnums() {
+        return assignmentStatusEnums;
     }
 
     public String getGithubUrl() {
@@ -82,12 +98,12 @@ public class Assignment {
         this.assignmentId = assignmentId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAssignmentNumbersEnums(List<AssignmentEnum> assignmentNumbersEnums) {
+        this.assignmentNumbersEnums = assignmentNumbersEnums;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setAssignmentStatusEnums(List<AssignmentStatusEnum> assignmentStatusEnums) {
+        this.assignmentStatusEnums = assignmentStatusEnums;
     }
 
     public void setGithubUrl(String githubUrl) {

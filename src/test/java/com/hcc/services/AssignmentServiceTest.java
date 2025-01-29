@@ -2,6 +2,8 @@ package com.hcc.services;
 
 import com.hcc.entities.Assignment;
 import com.hcc.entities.User;
+import com.hcc.enums.AssignmentEnum;
+import com.hcc.enums.AssignmentStatusEnum;
 import com.hcc.exceptions.AssignmentNotFoundException;
 import com.hcc.repositories.AssignmentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -107,9 +109,16 @@ public class AssignmentServiceTest {
 
         User newUser = new User();
         User newCodeReviewer = new User();
+
+        List<AssignmentStatusEnum> assignmentStatusEnums = new ArrayList<>();
+        assignmentStatusEnums.add(AssignmentStatusEnum.RESUBMITTED);
+
+        List<AssignmentEnum> assignmentNumbersEnum = new ArrayList<>();
+        assignmentNumbersEnum.add(AssignmentEnum.ASSIGNMENT_5);
+
         Assignment updatedAssignment = new Assignment();
-        updatedAssignment.setStatus("New Status");
-        updatedAssignment.setNumber(2);
+        updatedAssignment.setAssignmentStatusEnums(assignmentStatusEnums);
+        updatedAssignment.setAssignmentNumbersEnums(assignmentNumbersEnum);
         updatedAssignment.setGithubUrl("New Github URL");
         updatedAssignment.setBranch("New Branch");
         updatedAssignment.setReviewVideoUrl("New Review Video URL");
@@ -126,11 +135,11 @@ public class AssignmentServiceTest {
 
         // then
         assertEquals(newUser, result.getUser(), "New Users should be the same.");
-        assertEquals(2, result.getNumber(),
+        assertEquals(assignmentNumbersEnum, result.getAssignmentNumbersEnums(),
                 "New Numbers should be the same.");
         assertEquals("New Branch", result.getBranch(),
                 "New Branches should be the same.");
-        assertEquals("New Status", result.getStatus(),
+        assertEquals(assignmentStatusEnums, result.getAssignmentStatusEnums(),
                 "New Statuses should be the same.");
         assertEquals("New Github URL", result.getGithubUrl(),
                 "New Github URLs should be the same.");
@@ -167,13 +176,19 @@ public class AssignmentServiceTest {
         User newUser = new User();
         User newCodeReviewer = new User();
 
+        List<AssignmentEnum> assignmentNumbersEnums = new ArrayList<>();
+        assignmentNumbersEnums.add(AssignmentEnum.ASSIGNMENT_4);
+
+        List<AssignmentStatusEnum> assignmentStatusEnums = new ArrayList<>();
+        assignmentStatusEnums.add(AssignmentStatusEnum.IN_REVIEW);
+
         Assignment newAssignment = new Assignment();
         newAssignment.setAssignmentId(newAssignmentId);
         newAssignment.setUser(newUser);
         newAssignment.setCodeReviewer(newCodeReviewer);
         newAssignment.setBranch("New Branch");
-        newAssignment.setNumber(8008);
-        newAssignment.setStatus("New Status");
+        newAssignment.setAssignmentNumbersEnums(assignmentNumbersEnums);
+        newAssignment.setAssignmentStatusEnums(assignmentStatusEnums);
         newAssignment.setReviewVideoUrl("New Review Video URL");
         newAssignment.setGithubUrl("New Github URL");
 

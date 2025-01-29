@@ -3,6 +3,8 @@ package com.hcc.dto;
 import com.hcc.entities.Assignment;
 import com.hcc.entities.Authority;
 import com.hcc.entities.User;
+import com.hcc.enums.AssignmentEnum;
+import com.hcc.enums.AssignmentStatusEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.LongConsumer;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -36,7 +39,13 @@ public class AssignmentResponseDTOTest {
     @Test
     public void AssignmentResponseDTO_mapsCorrectly() {
         // given
-        assignment = new Assignment("Pending Submission", 1,
+        List<AssignmentEnum> assignmentEnums = new ArrayList<>();
+        assignmentEnums.add(AssignmentEnum.ASSIGNMENT_1);
+
+        List<AssignmentStatusEnum> assignmentStatusEnums = new ArrayList<>();
+        assignmentStatusEnums.add(AssignmentStatusEnum.NEEDS_UPDATE);
+
+        assignment = new Assignment(assignmentEnums, assignmentStatusEnums,
                 "https://github.com/madeup/assignment/slay/", "main",
                 "https://youtube.com/review/slay/assignment", user,
                 codeReviewer);
@@ -48,9 +57,19 @@ public class AssignmentResponseDTOTest {
         assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser()
                 .getUsername());
         assertEquals(assignmentResponseDTO.getBranch(), assignment.getBranch());
-        assertEquals(assignmentResponseDTO.getNumber(), assignment.getNumber());
+
+        assertEquals(assignmentResponseDTO.getAssignmentNumbers(),
+                assignment.getAssignmentNumbersEnums().stream()
+                        .map(AssignmentEnum::getAssignmentNumber)
+                        .collect(Collectors.toList()));
+
         assertEquals(assignmentResponseDTO.getGithubUrl(), assignment.getGithubUrl());
-        assertEquals(assignmentResponseDTO.getStatus(), assignment.getStatus());
+
+        assertEquals(assignmentResponseDTO.getAssignmentStatuses(),
+                assignment.getAssignmentStatusEnums().stream()
+                        .map(AssignmentStatusEnum::getStatus)
+                        .collect(Collectors.toList()));
+
         assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment
                 .getReviewVideoUrl());
     }
@@ -58,7 +77,13 @@ public class AssignmentResponseDTOTest {
     @Test
     public void AssignmentResponseDTO_nullCodeReviewer() {
         // given
-        assignment = new Assignment("Pending Submission", 1,
+        List<AssignmentEnum> assignmentEnums = new ArrayList<>();
+        assignmentEnums.add(AssignmentEnum.ASSIGNMENT_1);
+
+        List<AssignmentStatusEnum> assignmentStatusEnums = new ArrayList<>();
+        assignmentStatusEnums.add(AssignmentStatusEnum.NEEDS_UPDATE);
+
+        assignment = new Assignment(assignmentEnums, assignmentStatusEnums,
                 "https://github.com/madeup/assignment/slay/", "main",
                 "https://youtube.com/review/slay/assignment", user,
                 null);
@@ -70,9 +95,19 @@ public class AssignmentResponseDTOTest {
         assertEquals(assignmentResponseDTO.getUsername(), assignment.getUser()
                 .getUsername());
         assertEquals(assignmentResponseDTO.getBranch(), assignment.getBranch());
-        assertEquals(assignmentResponseDTO.getNumber(), assignment.getNumber());
+
+        assertEquals(assignmentResponseDTO.getAssignmentNumbers(),
+                assignment.getAssignmentNumbersEnums().stream()
+                        .map(AssignmentEnum::getAssignmentNumber)
+                        .collect(Collectors.toList()));
+
         assertEquals(assignmentResponseDTO.getGithubUrl(), assignment.getGithubUrl());
-        assertEquals(assignmentResponseDTO.getStatus(), assignment.getStatus());
+
+        assertEquals(assignmentResponseDTO.getAssignmentStatuses(),
+                assignment.getAssignmentStatusEnums().stream()
+                        .map(AssignmentStatusEnum::getStatus)
+                        .collect(Collectors.toList()));
+
         assertEquals(assignmentResponseDTO.getReviewVideoUrl(), assignment
                 .getReviewVideoUrl());
         assertNull(assignmentResponseDTO.getCodeReviewerUsername());

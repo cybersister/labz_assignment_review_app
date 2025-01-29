@@ -4,6 +4,9 @@ import com.hcc.entities.Assignment;
 import com.hcc.enums.AssignmentEnum;
 import com.hcc.enums.AssignmentStatusEnum;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * A data transfer object for the Assignment entity. The main purpose is to transfer data
  * between layers of the application, including controllers and views. This class specifically
@@ -13,20 +16,22 @@ import com.hcc.enums.AssignmentStatusEnum;
 public class AssignmentResponseDTO {
 
     private final Long id;
-    private final String status;
-    private final Integer number;
+    private final List<Integer> assignmentNumbers;
+    private final List<String> assignmentStatuses;
     private final String githubUrl;
     private final String branch;
     private final String reviewVideoUrl;
     private final String username;
     private final String codeReviewerUsername;
-    private final AssignmentEnum[] assignmentEnums;
-    private final AssignmentStatusEnum[] statusEnums;
 
     public AssignmentResponseDTO(Assignment assignment) {
         this.id = assignment.getId();
-        this.status = assignment.getStatus();
-        this.number = assignment.getNumber();
+        this.assignmentNumbers = assignment.getAssignmentNumbersEnums().stream()
+                .map(AssignmentEnum::getAssignmentNumber)
+                .collect(Collectors.toList());
+        this.assignmentStatuses = assignment.getAssignmentStatusEnums().stream()
+                .map(AssignmentStatusEnum::getStatus)
+                .collect(Collectors.toList());
         this.githubUrl = assignment.getGithubUrl();
         this.branch = assignment.getBranch();
         this.reviewVideoUrl = assignment.getReviewVideoUrl();
@@ -36,20 +41,18 @@ public class AssignmentResponseDTO {
         // ternary operator ... if the <assignment.getCodeReviewer()> is not null, then
         //  assign it the value <assignment.getCodeReviewer().getUsername()> ... otherwise,
         //  if the <assignment.getCodeReviewer()> is null, assign it a value of <null>
-        this.assignmentEnums = AssignmentEnum.values();
-        this.statusEnums = AssignmentStatusEnum.values();
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getStatus() {
-        return status;
+    public List<Integer> getAssignmentNumbers() {
+        return assignmentNumbers;
     }
 
-    public Integer getNumber() {
-        return number;
+    public List<String> getAssignmentStatuses() {
+        return assignmentStatuses;
     }
 
     public String getGithubUrl() {
@@ -70,14 +73,6 @@ public class AssignmentResponseDTO {
 
     public String getCodeReviewerUsername() {
         return codeReviewerUsername;
-    }
-
-    public AssignmentEnum[] getAssignmentEnums() {
-        return assignmentEnums;
-    }
-
-    public AssignmentStatusEnum[] getAssignmentStatusEnums() {
-        return statusEnums;
     }
 
 }

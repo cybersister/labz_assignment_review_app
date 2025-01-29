@@ -65,9 +65,11 @@ public class AssignmentService {
                         + assignmentId.toString() + " not found."));
 
         existingAssignment.setUser(updatedAssignment.getUser());
-        existingAssignment.setNumber(updatedAssignment.getNumber());
+        existingAssignment
+                .setAssignmentNumbersEnums(updatedAssignment.getAssignmentNumbersEnums());
         existingAssignment.setBranch(updatedAssignment.getBranch());
-        existingAssignment.setStatus(updatedAssignment.getStatus());
+        existingAssignment
+                .setAssignmentStatusEnums(updatedAssignment.getAssignmentStatusEnums());
         existingAssignment.setGithubUrl(updatedAssignment.getGithubUrl());
         existingAssignment.setCodeReviewer(updatedAssignment.getCodeReviewer());
         existingAssignment.setReviewVideoUrl(updatedAssignment.getReviewVideoUrl());

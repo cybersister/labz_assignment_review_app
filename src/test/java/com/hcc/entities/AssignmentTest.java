@@ -1,5 +1,7 @@
 package com.hcc.entities;
 
+import com.hcc.enums.AssignmentEnum;
+import com.hcc.enums.AssignmentStatusEnum;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -18,8 +20,12 @@ public class AssignmentTest {
     @Test
     public void Assignment_instantiatesAnObjectCorrectly() {
         // given
-        String status = "Submitted";
-        Integer number = 1;
+        List<AssignmentStatusEnum> assignmentStatusEnums = new ArrayList<>();
+        assignmentStatusEnums.add(AssignmentStatusEnum.COMPLETED);
+
+        List<AssignmentEnum> assignmentNumbersEnums = new ArrayList<>();
+        assignmentNumbersEnums.add(AssignmentEnum.ASSIGNMENT_2);
+
         String githubUrl = "https://github.com/madeup/assignment/slay/";
         String branch = "main";
         String reviewVideoUrl = "https://youtube.com/review/slay/assignment";
@@ -34,16 +40,16 @@ public class AssignmentTest {
                 "anotherPassword", authorityList);
 
         // when
-        Assignment assignment = new Assignment(status, number, githubUrl, branch,
-                reviewVideoUrl, user, reviewer);
+        Assignment assignment = new Assignment(assignmentNumbersEnums, assignmentStatusEnums,
+                githubUrl, branch, reviewVideoUrl, user, reviewer);
 
         // then
 //        assertNotNull(assignment.getId(), "The id for user should not be null.");
         // the <@GeneratedValue> annotation, combined with <@Id>, instructs jpa to
         //  automatically generate the value for the <id> field ... however, the value will
         //  only be generated once the entity is persisted to the database
-        assertEquals(assignment.getStatus(), status);
-        assertEquals(assignment.getNumber(), number);
+        assertEquals(assignment.getAssignmentStatusEnums(), assignmentStatusEnums);
+        assertEquals(assignment.getAssignmentNumbersEnums(), assignmentNumbersEnums);
         assertEquals(assignment.getGithubUrl(), githubUrl);
         assertEquals(assignment.getBranch(), branch);
         assertEquals(assignment.getReviewVideoUrl(), reviewVideoUrl);
