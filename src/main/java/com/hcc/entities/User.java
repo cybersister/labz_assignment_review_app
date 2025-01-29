@@ -15,16 +15,16 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
+    private Long id;
     @Column(name = "cohort_start_date")
     private LocalDate cohortStartDate;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<Authority> authorities;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Authority> authorities = new ArrayList<>();
 
     public User() {}
     // NO-ARGS CONSTRUCTOR
@@ -35,15 +35,26 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+
+        for (Authority authority : authorities) {
+            authority.setUser(this);
+        }
     }
     // ALL-ARGS EXPECT ID CONSTRUCTOR
 
     public User(User user) {
-        this.userId = user.userId;
+        this.id = user.id;
         this.cohortStartDate = user.cohortStartDate;
         this.username = user.username;
         this.password = user.password;
-        this.authorities = user.authorities != null ? new ArrayList<>(user.authorities) : null;
+        this.authorities
+                = user.authorities != null ? new ArrayList<>(user.authorities) : null;
+
+        if (this.authorities != null) {
+            for (Authority authority : this.authorities) {
+                authority.setUser(this);
+            }
+        }
     }
     // COPY CONSTRUCTOR
 
@@ -69,14 +80,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> roles = new ArrayList<>();
-
-        for (int i = 0; i < authorities.size(); i++) {
-            roles.add(authorities.get(i));
-        }
-        // safe copy
-
-        return roles;
+        return new ArrayList<>(authorities);
     }
 
     @Override
@@ -91,6 +95,24 @@ public class User implements UserDetails {
 
     public LocalDate getCohortStartDate() {
         return cohortStartDate;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
+
+        for (Authority authority : authorities) {
+            authority.setUser(this);
+        }
+    }
+
+    public void addAuthority(Authority authority) {
+        authorities.add(authority);
+        authority.setUser(this);
+    }
+
+    public void removeAuthority(Authority authority) {
+        authorities.remove(authority);
+        authority.setUser(null);
     }
 
 }

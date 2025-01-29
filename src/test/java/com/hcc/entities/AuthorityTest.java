@@ -1,5 +1,6 @@
 package com.hcc.entities;
 
+import com.hcc.enums.AuthorityEnum;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -18,20 +19,22 @@ public class AuthorityTest {
     @Test
     public void Authority_instantiatesAnObjectCorrectly() {
         // given
-        String authority = "authority";
+        AuthorityEnum authority = AuthorityEnum.ROLE_ADMIN;
 
         LocalDate localDate = LocalDate.now();
+        String username = "username";
+        String password = "password";
+
         List<Authority> authorityList = new ArrayList<>();
         authorityList.add(new Authority());
 
-        User user = new User(localDate, "username", "password",
-                authorityList);
+        User user = new User(localDate, username, password, authorityList);
 
         // when
         Authority authoriTEA = new Authority(authority, user);
 
         // then
-        assertEquals(authoriTEA.getAuthority(), authority);
+        assertEquals(authoriTEA.getAuthorityEnum(), authority);
         assertEquals(authoriTEA.getUser(), user);
     }
 

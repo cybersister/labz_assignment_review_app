@@ -17,11 +17,11 @@ public enum AuthorityEnum {
         this.authorityName = authorityName;
     }
 
-    int getAuthorityNumber() {
+    public int getAuthorityNumber() {
         return authorityNumber;
     }
 
-    String getAuthorityName() {
+    public String getAuthorityName() {
         return authorityName;
     }
 
