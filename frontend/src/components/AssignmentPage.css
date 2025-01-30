@@ -26,6 +26,15 @@
   text-transform: lowercase; /* Lowercase text */
 }
 
+.assignment-needs-save {
+  font-size: 0.8em;
+  text-align: center;
+  color: #6495ED; /* Cornflower blue */
+  margin-top: -10px;
+  margin-bottom: 20px;
+  text-transform: lowercase; /* Lowercase text */
+}
+
 .assignment-number {
   font-size: 1.5em;
   text-align: center;

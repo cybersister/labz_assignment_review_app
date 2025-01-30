@@ -3,7 +3,7 @@ import axios from 'axios';
 import './AssignmentPage.css'; // Import the CSS file
 
 const AssignmentPage = () => {
-  const [assignmentType, setAssignmentType] = useState('homework');
+  const [assignmentType, setAssignmentType] = useState('');
   const [githubUrl, setGithubUrl] = useState('');
   const [branchName, setBranchName] = useState('');
   const [error, setError] = useState('');
@@ -30,6 +30,7 @@ const AssignmentPage = () => {
     <div className="assignment-container">
       <form onSubmit={handleSubmit} className="assignment-form">
         <h1 className="assignment-title">submit assignment</h1>
+        <p className="assignment-needs-save">needs save</p>
         <h2 className="assignment-number">#12345</h2>
         {error && <p className="assignment-error">{error}</p>}
         {success && <p className="assignment-success">{success}</p>}
@@ -40,9 +41,20 @@ const AssignmentPage = () => {
           onChange={(e) => setAssignmentType(e.target.value)}
           className="assignment-input"
         >
-          <option value="homework">homework</option>
-          <option value="project">project</option>
-          <option value="quiz">quiz</option>
+          <option value="Spring Boot Service">spring boot service</option>
+          <option value="Spring Boot Data JPA">spring boot data jpa</option>
+          <option value="Spring Boot PostgreSQL">spring boot postgresql</option>
+          <option value="Docker Compose Setup">docker compose setup</option>
+          <option value="React Frontend Hooks">react frontend hooks</option>
+          <option value="Python Problems">python problems</option>
+          <option value="Assembly Boot Sector Hello World">assembly boot sector hello world</option>
+          <option value="CTF Buffer Overflow">ctf buffer overflow</option>
+          <option value="Docker Build">docker build</option>
+          <option value="AWS Buckets">aws buckets</option>
+          <option value="HashMaps and Sets">hashmaps and sets</option>
+          <option value="Computations Counting">computations counting</option>
+          <option value="Data Driven Websites">data driven websites</option>
+          <option value="SQL Reporting">sql reporting</option>
         </select>
         <input
           type="url"

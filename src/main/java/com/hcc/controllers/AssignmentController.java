@@ -1,11 +1,13 @@
 package com.hcc.controllers;
 
 import com.hcc.entities.Assignment;
+import com.hcc.enums.AssignmentEnum;
 import com.hcc.services.AssignmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -45,6 +47,11 @@ public class AssignmentController {
                                                            Assignment newAssignment) {
         Assignment savedAssignment = assignmentService.saveNewAssignment(newAssignment);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAssignment);
+    }
+
+    @GetMapping("/enums")
+    public List<AssignmentEnum> getAssignmentEnums() {
+        return Arrays.asList(AssignmentEnum.values());
     }
 
 }
