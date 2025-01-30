@@ -1,16 +1,15 @@
-// src/App.js
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+
+      </Routes>
+    </Router>
   );
 }
 
