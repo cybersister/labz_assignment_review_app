@@ -1,0 +1,87 @@
+/* ReviewerDashboard.css */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #6495ED; /* Cornflower blue background */
+    min-height: 100vh;
+  }
+  
+  .dashboard-title {
+    font-size: 2em;
+    color: #0047AB; /* Cobalt blue */
+    margin-bottom: 10px;
+    text-transform: lowercase; /* Lowercase text */
+  }
+  
+  .logout-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0047AB; /* Cobalt blue */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded edges */
+    cursor: pointer;
+    text-transform: lowercase; /* Lowercase text */
+    margin-bottom: 20px;
+  }
+  
+  .logout-button:hover {
+    background-color: #002f6c; /* Darker cobalt blue on hover */
+  }
+  
+  .dashboard-section {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #0047AB; /* Cobalt blue background for the section */
+    border-radius: 10px; /* Rounded edges */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .section-title {
+    font-size: 1.5em;
+    color: #ffffff; /* White text */
+    margin-bottom: 10px;
+    text-transform: lowercase; /* Lowercase text */
+  }
+  
+  .assignments-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start; /* Align items to the left */
+  }
+  
+  .assignment-box {
+    background-color: #6495ED; /* Cornflower blue */
+    color: #ffffff; /* White text */
+    padding: 10px;
+    border-radius: 5px; /* Rounded edges */
+    text-align: left;
+    text-transform: lowercase; /* Lowercase text */
+    width: calc(25% - 10px); /* Four columns */
+    box-sizing: border-box;
+  }
+  
+  .assignment-box p {
+    margin: 5px 0;
+  }
+  
+  .view-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #0047AB; /* Cobalt blue */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px; /* Rounded edges */
+    cursor: pointer;
+    text-transform: lowercase; /* Lowercase text */
+  }
+  
+  .view-button:hover {
+    background-color: #002f6c; /* Darker cobalt blue on hover */
+  }
