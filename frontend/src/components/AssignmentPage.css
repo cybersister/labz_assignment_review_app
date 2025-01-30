@@ -1,0 +1,82 @@
+/* AssignmentPage.css */
+
+.assignment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #6495ED; /* Cornflower blue background */
+}
+
+.assignment-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  background-color: #0047AB; /* Cobalt blue background for the form */
+  border-radius: 10px; /* Rounded edges */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.assignment-title {
+  font-size: 2em;
+  text-align: center;
+  color: #6495ED; /* Cornflower blue */
+  margin-bottom: 10px;
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.assignment-number {
+  font-size: 1.5em;
+  text-align: center;
+  color: #ffffff; /* White text */
+  margin-bottom: 20px;
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.assignment-label {
+  color: #ffffff; /* White text */
+  margin-bottom: 5px;
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.assignment-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded edges */
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.assignment-button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #6495ED; /* Cornflower blue */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 5px; /* Rounded edges */
+  cursor: pointer;
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.assignment-button:hover {
+  background-color: #4169E1; /* Darker cornflower blue on hover */
+}
+
+.assignment-error {
+  color: red;
+  margin-bottom: 10px;
+  text-transform: lowercase; /* Lowercase text */
+}
+
+.assignment-success {
+  color: green;
+  margin-bottom: 10px;
+  text-transform: lowercase; /* Lowercase text */
+}
