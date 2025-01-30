@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './LoginPage.css'; // Import the CSS file
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -21,25 +22,25 @@ const LoginPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', width: '300px' }}>
-        <h2>Login</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div className="login-container">
+      <form onSubmit={handleLogin} className="login-form">
+        <h2 className="login-title">Login</h2>
+        {error && <p className="login-error">{error}</p>}
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ marginBottom: '10px', padding: '10px', fontSize: '16px' }}
+          className="login-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{ marginBottom: '10px', padding: '10px', fontSize: '16px' }}
+          className="login-input"
         />
-        <button type="submit" style={{ padding: '10px', fontSize: '16px' }}>Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
     </div>
   );
