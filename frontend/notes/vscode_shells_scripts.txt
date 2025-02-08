@@ -1,0 +1,44 @@
+
+- a shell is a command line interface that allows you to interact with your operating system by typing
+commands 
+- it acts as an intermediary between the user and operating system
+- there are several types of shells each with their own features and syntax, a few examples being; bash, 
+zsh, powershell, cmd, etc.
+- different shells offer different features and capabilities, catering to various user needs and
+preferences
+
+- it is useful to open integreted terminals (within code editors such as vscode) with different shells,
+it's useful for; running commands and scripts directly within the editor, using multiple terminals for
+different tasks (i.e. running a development server in one terminal and running tests in another),
+switching between different shells depending on what's needed
+- by understand and utilizing different shells, you can enhance your productivity and stream line your
+deployment workflow in vscode
+
+- scripts are files containing a series of commands that are executed by a particular shell or
+interpretor, they are used to automate repetitive tasks, manage system operations, and perform complex
+sequence actions without manual instructions
+- scripts can be used for a variety of purpose: 
+(1) automation -> automate repetive tasks like backups,
+file management, and system monitorying
+(2) build processes -> compile code, run tests, and deploy applications
+(3) configuration -> set up environments, configure systems, and install dependencies
+(4) data processing -> process and analyze data, generate reports, and transform data formats
+
+- in vscode, you can have multiple integrated terminals open, each running different parts of your
+development workflow, such as:
+(1) terminal 1, running the backend server
+(2) terminal 2, running the frontend development server
+(3) terminal 3, running the posgresql commands
+(4) terminal 4, running the webpack to bundle frontend assets
+(5) terminal 5, managing source code with git
+- this type of set up allows you to work on different parts of you application simultaneously, monitor
+logs, and make changes without switching contexts ...l it enhances productivity and helps you manage
+complex develpment workflows efficiently
+
+- f11 for full screen mode in vscode
+- ctrl, shift, x for the extensions tab
+- install what it is you do need, doesn't come with everything you don't need
+- you can scale the vscode windown with simple cmd, + or -
+- you can change the font size in the settings
+- standard github commands available in the github 
+- zen mode gets rid of everything but the page you're working on, exit with f11

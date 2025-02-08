@@ -1,0 +1,13 @@
+
+- if your primary goal is to quickly see what
+your frontend we pages look like in your browser,
+you have a few options other than deploying the 
+entire application
+
+(1) use live server extension in vscode
+- right-click on any html file and select "open
+with Live Server"
+
+- terminal 1: "gradle bootRun" command in terminal 
+to get backend of applicatoin up and running 
+- terminal 2: 

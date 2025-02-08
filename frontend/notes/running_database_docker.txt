@@ -1,0 +1,148 @@
+
+- docker compose is a tool for defining and
+running multi-container docker applications
+- you use a yaml file to configure your
+application's services, networks, and volumes
+- then using a single command (<docker compose 
+up>), you can create and start all the services
+from your configuration
+
+- create a 'docker-compose.yml' file, in this
+case for a spring boot application with a 
+postgresql database
+- build and run the containers in the 
+'docker-compose.yml' file, first navigate to
+the directory containing the file and run
+<docker-compose up --build>
+- the <docker-compose up --build> command will
+build the docker images (if necessary) and start
+the containers
+- <docker-compose ps> -> verifies if the 
+containers are running
+
+- containers are lightweight, portable, and 
+self-sufficient units that include everything
+needed to run a piece of software, including the
+code, runtime, libraries, and dependencies
+- containers are isolated from each other and
+the host system, which ensures that they run
+consistently across different environments
+
+- containers ensure that the software runs the
+same way regardless of where it is deployed,
+eliminating the "it works on my machine" problem
+- containers isolate applications from each
+oother and the host system, providing a secure
+and controlled environment
+- containers can run on any system that supports
+docker, making it easy to move applications 
+between development, testing, and production
+environments
+- containers can be easily scaled up or down to
+handle varying loads, making them ideal for 
+microservices architecture
+
+- containers can be used to automate the build, 
+test, and deployment processes, enabling faster
+and more reliable releases
+- containers are well-suited for microservices
+architectures, where each service runs in its 
+own container and can be independently scaled
+and updated
+- containers are widely used in cloud
+environments, allowing applications to be easily
+deployed and managed across different cloud
+providers
+
+LOOKING AT THE DOCKER-COMPOSE.YML FILE 
+- <ports> maps port 5550 on the host to port
+5432 in the container ... this allows you to 
+access postgresql on port 5550 of your host
+machine
+- <POSTGRES_USER=docker> under the <environment>
+section sets the postgresql user to 'docker'
+- <POSTGRES_DB=api-starter-0121> creates a 
+database name 'api-starter-0121'
+- the <volumes> section mounts host directories
+as volumes in the container specified, in this
+section a custom postgresql configurtion file
+and a directory for postgresql data persistence
+is mounted ... whatever that means
+- the <command> section overrides the default
+command to start postgresql with a custom
+configuration file
+- <networks> connects the container to the 
+'postgres' network
+- <restart: always> ensure the container always
+restarts if it stops
+
+- a docker image is a lightweight, standalone,
+and executable software package that includes
+everything needed to run a piece of software,
+including the code, runtime, libraries, 
+environment variables, and configuration files
+- docker images are used to create docker
+containers
+
+- 'pgdb' service: (1) runs a postgresql
+database using the official 'postgres' image, 
+(2) customizes the postgresql configuration and
+data persistence, (3) maps port 5550 on the host
+to posrt 5432 in the container, and (4) connects
+to the 'postgre' network
+- 'pgadminFp' service: (1) runs pgadmin 4 using
+the official 'dpage/pgadmin4' image, (2) sets
+default login credentials and server 
+configuration, (3) maps a port on the host to 
+port 80 in the container, (4) connects to the
+'postgres' network
+- defines a custom 'postgre' network using the
+'bridge' driver
+
+- by using docker compose, you can easily manage
+and run your postgresql database and pgadmin
+services, ensuring a consistent and reliable
+environment for your application ...
+
+IN SUMMARY
+- the purpose of the 'docker-compose.yml' file
+is to define and configure multiple docker 
+containers, including the docker images they
+use, their environment variables, volumes, ports,
+and networks
+- each service in the 'docker-compose.yml' file
+represents a container ... you define the docker 
+image, environment variables, ports, volumes,
+and other settings for each service
+- networks allow containers to communicate with
+each other, by default, docker compose creates
+a network for you application, but you can
+define custom networks if needed
+- volumes are used to persist data outside of
+the container's filesystem, ensuring data is not 
+lost when the container is stopped or removed
+- a docker image is a read-only template that
+contains the application code, runtime,
+libraries, and dependencies needed to run an 
+application ... think of it as a snapshot of the
+environment
+- a container is a runtime instance of a docker
+image, it includes everything needed to run the
+application and is isolated from other
+containers and the host system
+- the command <docker-compose up> builds (if
+necessary) and starts all the services defined
+in the .yml file ... it also sets up the
+networks and volumes as specified
+- the benefits of containers include that (1) 
+the application run the same way on any machine
+(consistency), (2) that it can easily be moved
+between different environment such as 
+development, testing, or production without any
+changes (protability), (3) that they provide a
+secure and isolated environment for applications,
+preventing conflicts between different
+applications (isolation), and (4) that they can
+be easily scaled up or down to handle varying
+loads, making them ideal for microservices
+architecture (scalability) ... periodt
