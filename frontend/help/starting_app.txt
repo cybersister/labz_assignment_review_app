@@ -1,0 +1,3 @@
+- docker database: <docker-compose up -d pgdb> -> <docker-compose down pgdb>
+- spring boot backend: <gradle bootRun> -> ctrl + c
+- react js frontend: <npm start> -> ctrl + c
